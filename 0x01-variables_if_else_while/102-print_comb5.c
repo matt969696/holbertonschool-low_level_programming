@@ -9,45 +9,29 @@
  */
 int main(void)
 {
-	int nb1 = 48;
+	int nb1;
 	int nb2;
-	int nb3;
-	int nb4;
 
-	while (nb1 <= 57)
+	for (nb1 = 0; nb1 < 100; nb1++)
 	{
-		nb2 = 48;
-		while (nb2 <= 57)
+		for (nb2 = nb1 + 1; nb2 < 100; nb2++)
 		{
-			nb3 = 48;
-			while (nb3 <= 57)
+			if (nb1 != 0 || nb2 != 1)
 			{
-				nb4 = 48;
-				while (nb4 <= 57)
-				{
-					if ((nb3 * 10 + nb4) > (nb1 * 10 + nb2))
-					{
-						if ((nb1 > 48) || (nb2 > 48) || (nb3 > 48) || (nb4 > 49))
-						{
-						putchar(',');
-						putchar(' ');
-						}
-						putchar(nb1);
-						putchar(nb2);
-						putchar(' ');
-						putchar(nb3);
-						putchar(nb4);
-					}
-					nb4++;
-				}
-				nb3++;
+				putchar(',');
+				putchar(' ');
 			}
-			nb2++;
+
+			if (nb2 > nb1)
+			{
+				putchar('0' + nb1 / 10);
+				putchar('0' + nb1 % 10);
+				putchar(' ');
+				putchar('0' + nb2 / 10);
+				putchar('0' + nb2 % 10);
+			}
 		}
-		nb1++;
 	}
-
 	putchar('\n');
-
 	return (0);
 }
