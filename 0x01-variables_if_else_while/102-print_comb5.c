@@ -19,32 +19,25 @@ int main(void)
 		nb2 = 48;
 		while (nb2 <= 57)
 		{
-			if (nb2 = 57)
-			{
-				nb3 = nb1 + 1;
-				nb4 = 48;
-			}
-			else
-			{
-				nb3 = nb1;
-				nb4 = nb2 +1;
-			}
-			printf("Debug %d %d %d %d", nb1, nb2, nb3, nb4);
-
+			nb3 = 48;
 			while (nb3 <= 57)
 			{
-				while (nb4 <=57)
+				nb4 = 48;
+				while (nb4 <= 57)
 				{
-					if ((nb1 > 48) || (nb2 > 48) || (nb3 > 48) || (nb4 > 49))
+					if ((nb3 * 10 + nb4) > (nb1 * 10 + nb2))
 					{
+						if ((nb1 > 48) || (nb2 > 48) || (nb3 > 48) || (nb4 > 49))
+						{
 						putchar(',');
 						putchar(' ');
+						}
+						putchar(nb1);
+						putchar(nb2);
+						putchar(' ');
+						putchar(nb3);
+						putchar(nb4);
 					}
-					putchar(nb1);
-					putchar(nb2);
-					putchar(' ');
-					putchar(nb3);
-					putchar(nb4);
 					nb4++;
 				}
 				nb3++;

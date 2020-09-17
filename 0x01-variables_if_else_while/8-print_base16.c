@@ -19,7 +19,7 @@ int main(void)
 
 	ch = 'a';
 
-	while (ch <= 'e')
+	while (ch <= 'f')
 	{
 		putchar(ch);
 		ch++;
