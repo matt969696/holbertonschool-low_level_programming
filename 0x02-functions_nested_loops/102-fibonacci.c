@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdint.h>
 
 /**
  * main - prints the first 50 Fibonacci numbers,
@@ -9,7 +10,7 @@
 int main(void)
 {
 	int i;
-	long long n, n1, n2;
+	double n, n1, n2;
 
 	n1 = 2;
 	n2 = 1;
@@ -20,7 +21,7 @@ int main(void)
 		n = n1 + n2;
 		n2 = n1;
 		n1 = n;
-		printf(", %lli", n);
+		printf(", %.0f", n);
 	}
 	printf("\n");
 	return (0);
