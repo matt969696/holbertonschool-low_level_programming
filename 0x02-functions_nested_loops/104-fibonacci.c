@@ -23,13 +23,21 @@ int main(void)
 		ret = (n11 + n21 + ret) / 1000000000;
 		n0 = (n10 + n20 + ret) % 1000000000;
 
+		printf("    : n0 %li n1 %li n2 %li \n", n0, n1, n2);
 		printf(", ");
 		if (n0 > 0)
 			printf("%li", n0);
-		if (n1 > 0)
-			printf("%li", n1);
-		if (n2 > 0)
+		if (n1 > 0 || n0 > 0)
+		{
+			if (n0 == 0)
+				printf("%li", n1);
+			else
+				printf("%09li", n1);
+		}
+		if (n1 == 0 && n0 == 0)
 			printf("%li", n2);
+		else
+			printf("%09li", n2);
 
 		n20 = n10;
 		n21 = n11;
