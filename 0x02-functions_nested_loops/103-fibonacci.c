@@ -9,7 +9,6 @@
 
 int main(void)
 {
-	int i;
 	long n, n1, n2;
 	long sum;
 
@@ -23,7 +22,7 @@ int main(void)
 		n = n1 + n2;
 		n2 = n1;
 		n1 = n;
-		if (n % 2 == 0)
+		if (n % 2 == 0 && n < 4000000)
 			sum += n;
 	}
 	printf("%li\n", sum);
