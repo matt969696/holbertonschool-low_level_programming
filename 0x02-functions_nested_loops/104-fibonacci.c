@@ -23,7 +23,6 @@ int main(void)
 		ret = (n11 + n21 + ret) / 1000000000;
 		n0 = (n10 + n20 + ret) % 1000000000;
 
-		printf("    : n0 %li n1 %li n2 %li \n", n0, n1, n2);
 		printf(", ");
 		if (n0 > 0)
 			printf("%li", n0);
