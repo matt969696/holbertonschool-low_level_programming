@@ -1,9 +1,9 @@
 #include "holberton.h"
 /**
- * main - Function that prints "Holberton"
+ * main - Display Holberton
  *
- * Return: 0 (Success)
- */
+ * Return: 0
+ **/
 int main(void)
 {
 	_putchar('H');
