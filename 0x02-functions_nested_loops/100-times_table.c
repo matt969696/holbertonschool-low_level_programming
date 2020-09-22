@@ -36,9 +36,12 @@ void print_times_table(int n)
 				}
 				else
 				{
-					_putchar(' ');
-					_putchar(' ');
-					_putchar(' ');
+					if(b > 0)
+					{
+						_putchar(' ');
+						_putchar(' ');
+						_putchar(' ');
+					}
 					_putchar('0' + uni);
 				}
 				if (b == n)

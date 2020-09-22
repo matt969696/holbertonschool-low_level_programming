@@ -8,8 +8,7 @@
 
 void times_table(void)
 {
-	int a;
-	int b;
+	int a, b;
 
 	for (a = 0; a < 10; a++)
 	{
@@ -23,8 +22,11 @@ void times_table(void)
 			}
 			else
 			{
-				_putchar(' ');
-				_putchar(' ');
+				if (b > 0)
+				{
+					_putchar(' ');
+					_putchar(' ');
+				}
 				_putchar('0' + a * b);
 			}
 
