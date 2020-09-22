@@ -9,42 +9,34 @@
 
 int main(void)
 {
-	int i, j, ret;
-	long sum;
-	long n[5], n1[5], n2[5];
+	int i, ret;
+	long n10 = 0, n11 = 0, n12 = 2, n20 = 0, n21 = 0, n22 = 1;
+	long n0 = 0, n1 = 0, n2 = 0;
 
-	for (i = 0; i < 5; i++)
-	{
-		n[i] = 0;
-		n1[i] = 0;
-		n2[i] = 0;
-	}
-	n1[0] = 2;
-	n2[0] = 1;
 	printf("1, 2");
 	for (i = 3; i <= 98; i++)
 	{
 		ret = 0;
-		for (j = 0; j < 5; j++)
-		{
-			sum = n1[j] + n2[j] + ret;
-			if (sum > 1000000000)
-			{
-				sum = sum - 1000000000;
-				ret = 1;
-			}
-			else
-				ret = 0;
-			n[j] = sum;
-			n2[j] = n1[j];
-			n1[j] = n[j];
-		}
+		n2 = (n12 + n22) % 1000000000;
+		ret = (n12 + n22) / 1000000000;
+		n1 = (n11 + n21 + ret) % 1000000000;
+		ret = (n11 + n21 + ret) / 1000000000;
+		n0 = (n10 + n20 + ret) % 1000000000;
+
 		printf(", ");
-		for (j = 4; j >= 0; j--)
-		{
-			if (n[j] > 0)
-				printf("%li", n[j]);
-		}
+		if (n0 > 0)
+			printf("%li", n0);
+		if (n1 > 0)
+			printf("%li", n1);
+		if (n2 > 0)
+			printf("%li", n2);
+
+		n20 = n10;
+		n21 = n11;
+		n22 = n12;
+		n10 = n0;
+		n11 = n1;
+		n12 = n2;
 	}
 	printf("\n");
 	return (0);
