@@ -16,11 +16,8 @@ void print_number(int n)
 
 	k = 1;
 
-       	while ( n / k > 9 || n / k < -9)
-	{
+	while (n / k > 9 || n / k < -9)
 		k *= 10;
-	}
-
 
 	while (k > 0)
 	{
@@ -30,7 +27,7 @@ void print_number(int n)
 		{
 			_putchar('-');
 			_putchar('0' - nb);
-			n = - (n - nb * k);
+			n = -(n - nb * k);
 		}
 		else
 		{
