@@ -33,7 +33,7 @@ void _puts(char *str)
 	int i;
 
 	i = _strlen(str);
-	write(2, str, i);
-	write(2, "\n", 1);
+	write(1, str, i);
+	write(1, "\n", 1);
 
 }
