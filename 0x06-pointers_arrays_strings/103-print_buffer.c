@@ -30,14 +30,14 @@ void print_line(char *b, int size, int nb)
 
 	for (i = 0; i < 10; i++)
 	{
-		if (nb * 10 + i > size - 1)
-			printf(" ");
-		else if (b[nb * 10 + i] < 32)
+		if (nb * 10 + i < size)
+		{
+		if (b[nb * 10 + i] < 32)
 			printf(".");
 		else
 			printf("%c", b[nb * 10 + i]);
+		}
 	}
-
 	printf("\n");
 
 }
