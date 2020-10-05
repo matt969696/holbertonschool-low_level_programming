@@ -5,6 +5,7 @@
  *
  * @dest : destination area where to copy
  * @src : source area
+ * @n : number of character to be copied
  *
  * Return: pointer to dest
  *
