@@ -14,17 +14,16 @@
 char *_strchr(char *s, char c)
 {
 	unsigned int i = 0;
-	char *sol = 0;
 
 	while (*(s + i))
 	{
 		if (*(s + i) == c)
-		{
-			sol = (s + i);
-			return (sol);
-		}
+			return((s + i));
 		i++;
 	}
 
-	return (sol);
+	if (*(s + i) == c)
+		return((s + i));
+
+	return (0);
 }
