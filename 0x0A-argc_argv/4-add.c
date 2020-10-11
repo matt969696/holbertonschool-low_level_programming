@@ -2,6 +2,35 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
+/**
+ * checkint -  check if a string is a number
+ *
+ * @str : string to check
+ *
+ * Return: 0 if number else 1
+ */
+
+int checkint(char *str)
+{
+	int i = 0;
+
+	if (*str == '-')
+		i = 1;
+	while (*(str + i))
+	{
+		if (*(str + i) < '0' || *(str + i) > '9')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+
+
+
+
+
 /**
  * main -  adds positive numbers
  *
@@ -18,7 +47,7 @@ int main(int argc, char *argv[])
 
 	for (i = 1; i < argc; i++)
 	{
-		if (*argv[i] != '0' && atoi(argv[i]) == 0)
+		if (checkint(argv[i]) == 1)
 		{
 			printf("Error\n");
 			return (1);
