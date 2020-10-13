@@ -57,6 +57,32 @@ int nbword(char *s)
 
 
 
+/**
+ * mydup - duplicate a string
+ *
+ * @str : string to be copied
+ * @size : size of string
+ *
+ * Return: string
+ */
+
+char *mydup(char *str, int size)
+{
+	char *s;
+	int i;
+
+	if (str == NULL)
+		return (NULL);
+
+	s = malloc((size + 1) * sizeof(char));
+	if (s == NULL)
+		return (NULL);
+	for (i = 0; i < size; i++)
+		s[i] = str[i];
+	s[i] = '\0';
+	return (s);
+}
+
 
 /**
  * strtow - splits a string into words
@@ -68,16 +94,17 @@ int nbword(char *s)
 
 char **strtow(char *str)
 {
-	int i, j, nbw, inword = 0, sizeword = 0, curw = -1;
+	int i = 0, nbw, inword = 0, sizeword = 0, curw = -1;
 	char **s;
 
 	if (str == NULL || str[0] == '\0')
 		return (NULL);
 	nbw = nbword(str);
+	if (nbw == 0)
+		return (NULL);
 	s = malloc((nbw + 1) * sizeof(char *));
 	if (s == NULL)
 		return (NULL);
-	i = 0;
 	while (str[i] != '\0')
 	{
 		if (str[i] != ' ' && inword == 0)
@@ -89,10 +116,7 @@ char **strtow(char *str)
 		else if (str[i] == ' ' && inword == 1)
 		{
 			inword = 0;
-			s[curw] = malloc((sizeword + 1) * sizeof(char));
-			for (j = 0; j < sizeword; j++)
-				s[curw][j] = str[i + j - sizeword];
-			s[curw][j] = '\0';
+			s[curw] = mydup(str + i - sizeword, sizeword);
 			sizeword = 0;
 		}
 		else if (str[i] != ' ' && inword == 1)
@@ -101,10 +125,7 @@ char **strtow(char *str)
 	}
 	if (inword == 1)
 	{
-		s[curw] = malloc((sizeword + 1) * sizeof(char));
-		for (j = 0; j < sizeword; j++)
-			s[curw][j] = str[i + j - sizeword];
-		s[curw][j] = '\0';
+		s[curw] = mydup(str + i - sizeword, sizeword);
 	}
 	s[curw + 1] = NULL;
 	return (s);
