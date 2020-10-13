@@ -68,21 +68,15 @@ int nbword(char *s)
 
 char **strtow(char *str)
 {
-	int i, j;
-	int nbw;
+	int i, j, nbw, inword = 0, sizeword = 0, curw = -1;
 	char **s;
-	int inword = 0;
-	int sizeword = 0;
-	int curw = -1;
 
 	if (str == NULL || str[0] == '\0')
 		return (NULL);
-
 	nbw = nbword(str);
 	s = malloc((nbw + 1) * sizeof(char *));
 	if (s == NULL)
-                return (NULL);
-
+		return (NULL);
 	i = 0;
 	while (str[i] != '\0')
 	{
@@ -105,7 +99,13 @@ char **strtow(char *str)
 			sizeword += 1;
 		i++;
 	}
-
+	if (inword == 1)
+	{
+		s[curw] = malloc((sizeword + 1) * sizeof(char));
+		for (j = 0; j < sizeword; j++)
+			s[curw][j] = str[i + j - sizeword];
+		s[curw][j] = '\0';
+	}
 	s[curw + 1] = NULL;
 	return (s);
 }
