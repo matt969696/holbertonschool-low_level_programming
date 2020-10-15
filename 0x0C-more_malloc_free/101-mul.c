@@ -54,77 +54,21 @@ int *strtoarr(char *num, int lenstr, int size)
 
 
 
-
 /**
- * arraymultdigit - multiply an arrays of int by a digit
+ * arraymult - multiply 2 strings of int
  *
- * @resdigit : modified array
- * @nb1 : array1
- * @nb2 : digit
- * @dec : place of the digit
+ * @nb1 : string1
+ * @len1 : len of string1
+ * @nb2 : string2
+ * @len2 : len of string2
  * @lenres : length of all the arrays
  *
  * Return: array of int
  */
-int *arraymultdigit(int *resdigit, int *nb1, int nb2, int dec, int lenres)
+int *arraymult(char *nb1, int len1, char *nb2, int len2, int lenres)
 {
-	int i, mul, dig, ret;
-
-	for (i = 0; i < dec ; i++)
-		resdigit[lenres - i - 1] = 0;
-
-	ret = 0;
-	for (i = 0; i < lenres - dec; i++)
-	{
-		mul = nb1[lenres - i - 1] * nb2 + ret;
-		dig = mul % 10;
-		ret = mul / 10;
-		resdigit[lenres - dec - i - 1] = dig;
-	}
-	return (resdigit);
-}
-
-
-
-/**
- * arrayadd - multiply 2 arrays of int
- *
- * @res1 : array1
- * @res2 : array2
- * @lenres : length of all the arrays
- *
- * Return: array of int
- */
-int *arrayadd(int *res1, int *res2, int lenres)
-{
-	int i, add, dig, ret;
-
-	ret = 0;
-	for (i = 0; i < lenres; i++)
-	{
-		add = res1[lenres - i - 1] + res2[lenres - i - 1] + ret;
-		dig = add % 10;
-		ret = add / 10;
-		res1[lenres - i - 1] = dig;
-	}
-	return (res1);
-}
-
-
-/**
- * arraymult - multiply 2 arrays of int
- *
- * @nb1 : array1
- * @nb2 : array2
- * @lenres : length of all the arrays
- *
- * Return: array of int
- */
-int *arraymult(int *nb1, int *nb2, int lenres)
-{
-	int i;
+	int i, j, k, tot, ret;
 	int *res;
-	int *resdigit;
 
 	res = malloc(lenres * sizeof(int));
 	if (res == NULL)
@@ -132,20 +76,25 @@ int *arraymult(int *nb1, int *nb2, int lenres)
 	for (i = 0; i < lenres; i++)
 		res[i] = 0;
 
-	resdigit = malloc(lenres * sizeof(int));
-	if (resdigit == NULL)
+	ret = 0;
+	for (i = 0; i < lenres ; i++)
 	{
-		free(res);
-		return (NULL);
-	}
+		tot = ret;
+		if (i > len1 - 1)
+			j = len1 - 1;
+		else
+			j = i;
 
-	for (i = 0; i < lenres; i++)
-	{
-		resdigit = arraymultdigit(resdigit, nb1, nb2[lenres - i - 1], i, lenres);
-		res = arrayadd(res, resdigit, lenres);
+		k = i - j;
+		while (k < len2 && k <= i)
+		{
+			tot += (nb1[len1 - j - 1] - '0') * (nb2[len2 - k - 1] - '0');
+			k++;
+			j--;
+		}
+		res[lenres - i - 1] = tot % 10;
+		ret = tot / 10;
 	}
-
-	free(resdigit);
 	return (res);
 }
 
@@ -193,7 +142,7 @@ void printarr(int *arr, int lenres)
 int main(int argc, char *argv[])
 {
 	int len1, len2, lenres;
-	int *nb1, *nb2, *res;
+	int *res;
 
 	if (argc != 3)
 	{
@@ -208,27 +157,15 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 	lenres = len1 + len2;
-	nb1 = strtoarr(argv[1], len1, lenres);
-	nb2 = strtoarr(argv[2], len2, lenres);
-	if (nb1 == NULL || nb2 == NULL)
-	{
-		free(nb1);
-		free(nb2);
-		printf("Error\n");
-		exit(98);
-	}
-	res = arraymult(nb1, nb2, lenres);
+
+	res = arraymult(argv[1], len1, argv[2], len2, lenres);
 
 	if (res == NULL)
 	{
-		free(nb1);
-		free(nb2);
 		printf("Error\n");
 		exit(98);
 	}
 	printarr(res, lenres);
-	free(nb1);
-	free(nb2);
 	free(res);
 	return (0);
 }
