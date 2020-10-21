@@ -13,7 +13,7 @@
 
 int main(int argc, char *argv[])
 {
-	int (*fct)(int a, int b);
+	int (*fct)(int, int);
 
 	if (argc != 4)
 	{
@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 	}
 
 	fct = get_op_func(argv[2]);
-	if (fct == NULL)
+	if (fct == NULL || argv[2][1] != '\0')
 	{
 		printf("Error\n");
 		return (99);
