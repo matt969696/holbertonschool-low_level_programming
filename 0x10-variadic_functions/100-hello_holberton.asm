@@ -1,13 +1,16 @@
 section .data
-	msg    db "Hello, Holberton", 10 ; db: data byte, 10: ASCII newline
-section .text
+	string db	`Hello, Holberton\n`
+	string_len equ	$-string
+
+	section .text
 	global main
-main :
-	    mov	rax, 1		; write
-	    mov	rdi, 1		; to stdout
-	    mov	rsi, msg	; starting at msg
-	    mov	rdx, 18		; for len bytes
-	    syscall
-	    mov	rax, 60		; exit
-	    mov	rdi, 0		; with success
-	    syscall		;_
+main:
+	mov ebx, 1
+	mov eax, 4
+	mov ecx, string
+	mov edx, string_len
+	int 0x80
+
+	mov ebx, 0
+	mov eax, 1
+	int 0x80
