@@ -1,15 +1,13 @@
 #include <stdio.h>
 
 
+void printbeforemain(void) __attribute__((constructor));
 
 /**
  * printbeforemain - prints a string before the main execution
  *
  * Return: Void
  */
-
-void printbeforemain(void) __attribute__ ((constructor));
-
 void printbeforemain(void)
 {
 	printf("You're beat! and yet, you must allow,\n");
