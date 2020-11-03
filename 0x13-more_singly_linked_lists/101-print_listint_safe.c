@@ -44,7 +44,7 @@ size_t print_listint_safe(const listint_t *h)
 	start = h;
 
 	if (h == NULL)
-		return (98);
+		return (0);
 	i = 0;
 	while (h && _dist(start, h) == i)
 	{
