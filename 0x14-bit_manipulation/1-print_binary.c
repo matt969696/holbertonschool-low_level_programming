@@ -12,8 +12,8 @@ void print_binary_rec(unsigned long int n)
 {
 	if (n != 0)
 	{
-		print_binary_rec(n / 2);
-		_putchar(n % 2 + '0');
+		print_binary_rec(n >> 1);
+		_putchar((n & 1) + '0');
 	}
 }
 
