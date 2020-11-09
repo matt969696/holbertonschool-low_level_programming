@@ -83,6 +83,7 @@ int main(int ac, char **av)
 		w = write(fdto, buf, n);
 		if (w == -1 || w != n)
 			raiseError("Error: Can't write to %s\n", av[2], 99, fdfrom);
+	}
 
 	clfrom = close(fdfrom);
 	clto = close(fdto);
