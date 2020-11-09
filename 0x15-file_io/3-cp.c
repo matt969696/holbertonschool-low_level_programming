@@ -61,7 +61,7 @@ void raiseErrorInt(char *text, int arg, int exitnb, int fdfrom)
 
 int main(int ac, char **av)
 {
-	int fdfrom, fdto, clfrom, clto, n;
+	int fdfrom, fdto, clfrom, clto, n, w;
 	char buf[1024];
 
 	if (ac != 3)
@@ -75,12 +75,14 @@ int main(int ac, char **av)
 	if (fdto == -1)
 		raiseError("Error: Can't write to %s\n", av[2], 99, fdfrom);
 
-	while ((n = read(fdfrom, buf, 1024)) > 0)
-		if (write(fdto, buf, n) != n)
-			raiseError("Error: Can't write to %s\n", av[2], 99, fdfrom);
+	while ((n = read(fdfrom, buf, 1024)) != 0)
+	{
+		if (n == -1)
+			raiseError("Error: Can't read from file %s\n", av[1], 98, 0);
 
-	if (n == -1)
-		raiseError("Error: Can't read from file %s\n", av[1], 98, 0);
+		w = write(fdto, buf, n);
+		if (w == -1 || w != n)
+			raiseError("Error: Can't write to %s\n", av[2], 99, fdfrom);
 
 	clfrom = close(fdfrom);
 	clto = close(fdto);
