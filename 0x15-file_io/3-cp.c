@@ -15,10 +15,7 @@
 
 void raiseError(char *text, char *arg, int exitnb, int fdfrom)
 {
-	if (arg == 0)
-		dprintf(2, text, arg);
-	else
-		dprintf(2, text, arg);
+	dprintf(STDERR_FILENO, text, arg);
 
 	if (fdfrom != 0)
 		close(fdfrom);
@@ -43,10 +40,7 @@ void raiseError(char *text, char *arg, int exitnb, int fdfrom)
 
 void raiseErrorInt(char *text, int arg, int exitnb, int fdfrom)
 {
-	if (arg == 0)
-		dprintf(2, text, arg);
-	else
-		dprintf(2, text, arg);
+	dprintf(STDERR_FILENO, text, arg);
 
 	if (fdfrom != 0)
 		close(fdfrom);
@@ -85,6 +79,8 @@ int main(int ac, char **av)
 		if (write(fdto, buf, n) != n)
 			raiseError("Error: Can't write to %s\n", av[2], 99, fdfrom);
 
+	if (n == -1)
+		raiseError("Error: Can't read from file %s\n", av[1], 98, 0);
 
 	clfrom = close(fdfrom);
 	clto = close(fdto);
