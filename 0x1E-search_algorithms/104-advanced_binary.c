@@ -39,20 +39,21 @@ int binary_search_rec(int *array, size_t f, size_t t, int value)
 {
 	size_t m;
 
-	if (array == NULL || f > t)
+	if (f > t)
 		return (-1);
 
 	print_subarray(array, f, t);
+
 	if (array[f] == value)
 		return (f);
 	if (f == t)
 		return (-1);
 
 	m = (f + t) / 2;
-	if (array[m] == value)
+	if (array[m] == value && array[m - 1] != value)
+		return (m);
+	if (array[m] >= value)
 		return (binary_search_rec(array, f, m, value));
-	if (array[m] > value)
-		return (binary_search_rec(array, f, m - 1, value));
 	if (array[m] < value)
 		return (binary_search_rec(array, m + 1, t, value));
 
@@ -71,8 +72,9 @@ int binary_search_rec(int *array, size_t f, size_t t, int value)
 
 int advanced_binary(int *array, size_t size, int value)
 {
-	size_t from = 0;
-	size_t to = size - 1;
 
-	return (binary_search_rec(array, from, to, value));
+	if (array == NULL || size == 0)
+		return (-1);
+
+	return (binary_search_rec(array, 0, size - 1, value));
 }
