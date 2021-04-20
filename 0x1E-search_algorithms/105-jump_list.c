@@ -41,13 +41,14 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 		i += step;
 		head = tail;
 	}
-	while (head)
+	i = 0;
+	while (head && i < step && head->n <= value)
 	{
 		printf("Value checked array[%lu] = [%i]\n", head->index, head->n);
 		if (head->n == value)
 			return (head);
 		head = head->next;
+		i++;
 	}
-
-	return (head);
+	return (NULL);
 }
