@@ -50,5 +50,8 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 		head = head->next;
 		i++;
 	}
+
+	if (head)
+		printf("Value checked array[%lu] = [%i]\n", head->index, head->n);
 	return (NULL);
 }
